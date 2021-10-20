@@ -37,8 +37,28 @@
         }
 
         function createCard(data){
+            display.innerHTML = "";
             for( var i = 0; i < 10; i++ ){
-                console.log( data[i] );
+                // console.log( data[i] );
+                var { avatar_url, id, repos_url } = data[i];
+                
+                var card = document.createElement("div");
+                card.className = "card";
+                
+                var img = document.createElement("img");
+                img.src = avatar_url;
+
+                var userId = document.createElement("h1");
+                userId.textContent = id;
+
+                var repoButton = document.createElement("button");
+                repoButton.textContent = "See Repos..."
+                repoButton.addEventListener("click", (repos_url) => {
+                    window.location = repos_url;
+                });
+
+                card.append( img, userId, repoButton );
+                display.appendChild( card );
             }
         }
     </script>
